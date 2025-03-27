@@ -76,21 +76,21 @@
         </button>
       </form>
     </div>
-  `,onRendered:()=>{const e=p.getState("user"),s=e.username??"",r=e.email??"",l=e.bio??"";document.getElementById("username").value=s,document.getElementById("email").value=r,document.getElementById("bio").value=l,document.querySelector("form").addEventListener("submit",n=>{n.preventDefault();const c=document.getElementById("username").value,d=document.getElementById("email").value,i=document.getElementById("bio").value;q({username:c,email:d,bio:i})})}}),h=new Map,y=(t,o)=>{h.set(t,o)},V=t=>{const o=h.get(t);o&&(o(),h.delete(t))},x=()=>{h.forEach(t=>t()),h.clear()},R="/front_5th_chapter1-1/",u={ACTIVE:"text-blue-600",INACTIVE:"text-gray-600",BOLD:"font-bold"},k=()=>{const t=p.getState("isLoggedIn");return{render:()=>`
+  `,onRendered:()=>{const e=p.getState("user"),s=e.username??"",r=e.email??"",l=e.bio??"";document.getElementById("username").value=s,document.getElementById("email").value=r,document.getElementById("bio").value=l,document.querySelector("form").addEventListener("submit",n=>{n.preventDefault();const c=document.getElementById("username").value,d=document.getElementById("email").value,i=document.getElementById("bio").value;q({username:c,email:d,bio:i})})}}),h=new Map,y=(t,o)=>{h.set(t,o)},V=t=>{const o=h.get(t);o&&(o(),h.delete(t))},x=()=>{h.forEach(t=>t()),h.clear()},R="/front_5th_chapter1-1/",m={ACTIVE:"text-blue-600",INACTIVE:"text-gray-600",BOLD:"font-bold"},k=()=>{const t=p.getState("isLoggedIn");return{render:()=>`
       <header class="bg-blue-600 text-white p-4 sticky top-0">
         <h1 class="text-2xl font-bold">항해플러스</h1>
       </header>
     
       <nav class="bg-white shadow-md p-2 sticky top-14">
         <ul class="flex justify-around">
-          <li><a href="/" id="home" class="${u.ACTIVE} ${u.BOLD}">홈</a></li>
+          <li><a href="/" id="home" class="${m.INACTIVE}">홈</a></li>
           ${t?`
-                <li><a href="/profile" id="profile" class="${u.INACTIVE}">프로필</a></li>
-                <li><a href="/login" id="logout" class="${u.INACTIVE}">로그아웃</a></li>
-              `:`<li><a href="/login" id="login" class="${u.INACTIVE}">로그인</a></li>`}
+                <li><a href="/profile" id="profile" class="${m.INACTIVE}">프로필</a></li>
+                <li><a href="/login" id="logout" class="${m.INACTIVE}">로그아웃</a></li>
+              `:`<li><a href="/login" id="login" class="${m.INACTIVE}">로그인</a></li>`}
         </ul>
       </nav>
-    `,onRendered:()=>{const s=window.location.pathname.replace(R,"/"),r=document.querySelector("nav"),l=r.querySelectorAll("li"),a=r.querySelector(`a[href="${s}"]`);a&&(a.classList=`${u.ACTIVE} ${u.BOLD}`);const n=c=>{if(c.preventDefault(),c.target.classList.contains(u.ACTIVE))return;if(c.target.id==="logout"){V("header"),G(),b.navigate(m.LOGIN);return}const d=r.querySelector("a.text-blue-600");d.classList=`${u.INACTIVE}`,c.target.classList=`${u.ACTIVE} ${u.BOLD}`,b.navigate(c.target.pathname.replace(R,"/"))};l.forEach(c=>{c.addEventListener("click",n),y(`header-${c.id}`,()=>c.removeEventListener("click",n))})}}},_=()=>({render:()=>`
+    `,onRendered:()=>{const s=window.location.pathname.replace(R,"/"),r=document.querySelector("nav"),l=r.querySelectorAll("li"),a=r.querySelector(`a[href="${s}"]`);a&&(a.classList=`${m.ACTIVE} ${m.BOLD}`);const n=c=>{if(c.preventDefault(),c.target.classList.contains(m.ACTIVE))return;if(c.target.id==="logout"){V("header"),G(),b.navigate(u.LOGIN);return}const d=r.querySelector("a.text-blue-600");d.classList=`${m.INACTIVE}`,c.target.classList=`${m.ACTIVE} ${m.BOLD}`,b.navigate(c.target.pathname.replace(R,"/"))};l.forEach(c=>{c.addEventListener("click",n),y(`header-${c.id}`,()=>c.removeEventListener("click",n))})}}},_=()=>({render:()=>`
     <footer class="bg-gray-200 p-4 text-center">
       <p>&copy; 2024 항해플러스. All rights reserved.</p>
     </footer>
@@ -128,7 +128,7 @@
         </div>
       </div>
     </main>
-  `,onRendered:()=>{const e=document.querySelector("#login-form"),s=r=>{var a,n;r.preventDefault();const l=(a=e.querySelector("#username"))==null?void 0:a.value;(n=e.querySelector("#password"))==null||n.value,l&&(M({username:l}),b.navigate(m.HOME))};e.addEventListener("submit",s),y("loginPage",()=>{e.removeEventListener("submit",s)})}}),D=()=>({render:()=>`
+  `,onRendered:()=>{const e=document.querySelector("#login-form"),s=r=>{var a,n;r.preventDefault();const l=(a=e.querySelector("#username"))==null?void 0:a.value;(n=e.querySelector("#password"))==null||n.value,l&&(M({username:l}),b.navigate(u.HOME))};e.addEventListener("submit",s),y("loginPage",()=>{e.removeEventListener("submit",s)})}}),D=()=>({render:()=>`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
         <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
@@ -142,4 +142,4 @@
         </a>
       </div>
     </main>
-  `,onRendered:()=>{const e=document.querySelector("#home-link"),s=r=>{r.preventDefault(),b.navigate(m.HOME)};e.addEventListener("click",s),y("errorPage",()=>{e.removeEventListener("click",s)})}}),m={HOME:"/",PROFILE:"/profile",LOGIN:"/login",ERROR:"/error"},g={TAB:"TAB",PAGE:"PAGE"},P={[m.HOME]:{id:"home",type:g.TAB,container:()=>O(L),content:L,needAuth:!1},[m.PROFILE]:{id:"profile",type:g.TAB,container:()=>O(A),content:A,needAuth:!0},[m.LOGIN]:{id:"login",type:g.PAGE,container:j,needAuth:!1},[m.ERROR]:{id:"error",type:g.PAGE,container:D,needAuth:!1}},T="/front_5th_chapter1-1/",U=()=>{const t=a=>{const n=T+(a.startsWith("/")?a.slice(1):a);n!==window.location.pathname&&(window.history.pushState({},"",n),e())},o=(a,n)=>n.needAuth&&!p.getState("isLoggedIn")?{redirect:!0,path:m.LOGIN}:a===m.LOGIN&&p.getState("isLoggedIn")?{redirect:!0,path:m.HOME}:{redirect:!1},e=(a=!1)=>{var E,I,S;const c=(a?window.location.hash.slice(1):window.location.pathname).replace(T,"/"),d=P[c]??P[m.ERROR],i=o(c,d);if(i.redirect){t(i.path);return}const f=d.container();if(d.type===g.PAGE){x(),document.getElementById("root").innerHTML=f.render(),(E=f.onRendered)==null||E.call(f);return}const w=document.querySelector("#root #main");if(!w){x(),document.getElementById("root").innerHTML=f.render(),(I=f.onRendered)==null||I.call(f);return}const v=d.content();w.innerHTML=v.render(),(S=v.onRendered)==null||S.call(v)},s=()=>{e()},r=()=>{e(!0)};return{navigate:t,init:()=>{localStorage.getItem("user")&&p.setState({isLoggedIn:!0}),x(),window.addEventListener("popstate",s),window.addEventListener("hashchange",r),e()}}},b=U();(()=>{const o=new URLSearchParams(window.location.search).get("p");o&&window.history.replaceState(null,"",o),b.init()})();
+  `,onRendered:()=>{const e=document.querySelector("#home-link"),s=r=>{r.preventDefault(),b.navigate(u.HOME)};e.addEventListener("click",s),y("errorPage",()=>{e.removeEventListener("click",s)})}}),u={HOME:"/",PROFILE:"/profile",LOGIN:"/login",ERROR:"/error"},g={TAB:"TAB",PAGE:"PAGE"},P={[u.HOME]:{id:"home",type:g.TAB,container:()=>O(L),content:L,needAuth:!1},[u.PROFILE]:{id:"profile",type:g.TAB,container:()=>O(A),content:A,needAuth:!0},[u.LOGIN]:{id:"login",type:g.PAGE,container:j,needAuth:!1},[u.ERROR]:{id:"error",type:g.PAGE,container:D,needAuth:!1}},T="/front_5th_chapter1-1/",U=()=>{const t=a=>{const n=T+(a.startsWith("/")?a.slice(1):a);n!==window.location.pathname&&(window.history.pushState({},"",n),e())},o=(a,n)=>n.needAuth&&!p.getState("isLoggedIn")?{redirect:!0,path:u.LOGIN}:a===u.LOGIN&&p.getState("isLoggedIn")?{redirect:!0,path:u.HOME}:{redirect:!1},e=(a=!1)=>{var E,I,S;const c=(a?window.location.hash.slice(1):window.location.pathname).replace(T,"/"),d=P[c]??P[u.ERROR],i=o(c,d);if(i.redirect){t(i.path);return}const f=d.container();if(d.type===g.PAGE){x(),document.getElementById("root").innerHTML=f.render(),(E=f.onRendered)==null||E.call(f);return}const w=document.querySelector("#root #main");if(!w){x(),document.getElementById("root").innerHTML=f.render(),(I=f.onRendered)==null||I.call(f);return}const v=d.content();w.innerHTML=v.render(),(S=v.onRendered)==null||S.call(v)},s=()=>{e()},r=()=>{e(!0)};return{navigate:t,init:()=>{localStorage.getItem("user")&&p.setState({isLoggedIn:!0}),x(),window.addEventListener("popstate",s),window.addEventListener("hashchange",r),e()}}},b=U();(()=>{const o=new URLSearchParams(window.location.search).get("p");o&&window.history.replaceState(null,"",o),b.init()})();
