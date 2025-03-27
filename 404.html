@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/" />
+    <script>
+      const pathname = window.location.pathname;
+      const search = window.location.search || '';
+      const hash = window.location.hash || '';
+      const newUrl = `/?p=${pathname}${search}${hash}`;
+
+      window.location.replace(newUrl);
+    </script>
+  </head>
+  <body></body>
+</html>
